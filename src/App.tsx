@@ -428,7 +428,7 @@ useEffect(() => {
 
                   <div className="hidden sm:flex justify-center">
                     <span className="text-[10px] md:text-[11px] font-bold uppercase tracking-[0.2em] border px-4 py-1.5 rounded-none transition-all duration-500 text-white/80 border-white/5 bg-white/5">
-                      RM {tx.deposit.toLocaleString()}
+                      $ {tx.deposit.toLocaleString()}
                     </span>
                   </div>
 
