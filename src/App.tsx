@@ -683,9 +683,9 @@ const pastEvents = [
     image: "/cny.png",
     prizes: ["RM38,888 Free Credit Pool", "Limited Edition Gold Tokens", "Angpow Surprises"],
     winners: [
-      { name: "ami**9*", prize: "RM18,888" },
-      { name: "lucky**w*", prize: "RM3,888" },
-      { name: "u*z***zi*", prize: "RM2,888" },
+      { name: "ami**9*", prize: "$18,888" },
+      { name: "lucky**w*", prize: "$3,888" },
+      { name: "u*z***zi*", prize: "$2,888" },
     ],
     featured: true,
     desc: "Our most recent lunar celebration where 8 lucky immortals shared a massive credit pool.",
@@ -705,7 +705,6 @@ const pastEvents = [
     "iPad Pro",
     "Cruise Tickets",
     "Apple Watch",
-    "TnG eWallet Credits",
   ],
   winners: [
     { name: "rolex_owner", prize: "Rolex Cosmograph Daytona" },
