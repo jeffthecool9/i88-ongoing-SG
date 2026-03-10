@@ -462,49 +462,58 @@ const PaymentRiver = () => {
       name: "Bitcoin",
       src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/1200px-Bitcoin.svg.png",
       isBank: false,
+      scale: 1,
     },
     {
       name: "USDT",
       src: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Tether_USDT.png/1200px-Tether_USDT.png",
       isBank: false,
+      scale: 1,
     },
   ];
+
+  const loopedLogos = [...logos, ...logos];
 
   return (
     <section className="py-16 md:py-24 relative overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        {/* Title */}
-        <div className="text-center mb-10">
+        <div className="text-center mb-8 md:mb-10">
           <h3 className="text-lg sm:text-xl md:text-2xl font-black uppercase tracking-[0.25em] text-cyan-400 drop-shadow-[0_0_12px_rgba(34,211,238,0.35)]">
             Supported Payment Methods
           </h3>
         </div>
 
-        {/* Logos */}
-        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4 sm:gap-6">
-
-          {logos.map((logo, idx) => (
-            <motion.div
-              key={idx}
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300 }}
-              className="flex items-center justify-center
-              h-20 sm:h-20 md:h-24
-              rounded-xl
-              bg-white/90
-              shadow-[0_0_20px_rgba(255,255,255,0.08)]
-              backdrop-blur-sm"
-            >
-              <img
-                src={logo.src}
-                alt={logo.name}
-                className="h-12 sm:h-10 md:h-12 object-contain"
-                style={{ transform: `scale(${logo.scale || 1})` }}
-              />
-            </motion.div>
-          ))}
-
+        <div className="relative overflow-hidden">
+          <motion.div
+            className="flex gap-4 sm:gap-5 md:gap-6 w-max"
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{
+              repeat: Infinity,
+              repeatType: "loop",
+              duration: 18,
+              ease: "linear",
+            }}
+          >
+            {loopedLogos.map((logo, idx) => (
+              <div
+                key={`${logo.name}-${idx}`}
+                className="flex-shrink-0 flex items-center justify-center
+                w-[140px] sm:w-[160px] md:w-[180px]
+                h-[76px] sm:h-[84px] md:h-[96px]
+                rounded-2xl
+                bg-white/90
+                shadow-[0_0_20px_rgba(255,255,255,0.08)]
+                px-4 sm:px-5"
+              >
+                <img
+                  src={logo.src}
+                  alt={logo.name}
+                  className="h-10 sm:h-11 md:h-12 w-auto object-contain"
+                  style={{ transform: `scale(${logo.scale || 1})` }}
+                />
+              </div>
+            ))}
+          </motion.div>
         </div>
       </div>
     </section>
