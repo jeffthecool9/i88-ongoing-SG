@@ -453,12 +453,11 @@ useEffect(() => {
 
 const PaymentRiver = () => {
   const logos = [
-  { name: "Maybank", src: "/paynow.jpg", scale: 0.9 },
-    { name: "CIMB", src: "/uob.png", scale: 0.95 },
- { name: "FPX", src: "/posb.jpg", scale: 0.9 },
-   { name: "DuitNow", src: "/ocbc.jpg", scale: 0.9 },
-     { name: "PublicBank", src: "/dbs.png", scale: 0.9 },
-    
+    { name: "Maybank", src: "/paynow.jpg", scale: 1 },
+    { name: "CIMB", src: "/uob.png", scale: 1 },
+    { name: "FPX", src: "/posb.jpg", scale: 1 },
+    { name: "DuitNow", src: "/ocbc.jpg", scale: 1 },
+    { name: "PublicBank", src: "/dbs.png", scale: 1 },
     {
       name: "Bitcoin",
       src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/1200px-Bitcoin.svg.png",
@@ -471,77 +470,44 @@ const PaymentRiver = () => {
     },
   ];
 
-  const { scrollY } = useScroll();
-  const scrollVelocity = useVelocity(scrollY);
-
-  const [windowWidth, setWindowWidth] = useState(
-    typeof window !== "undefined" ? window.innerWidth : 1200
-  );
-
-  useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const isMobile = windowWidth < 640;
-  const isTablet = windowWidth >= 640 && windowWidth < 1024;
-
-  const getVelocityRange = () => {
-    if (isMobile) return [30, -30];
-    if (isTablet) return [60, -60];
-    return [100, -100];
-  };
-
-  const getDuration = () => {
-    if (isMobile) return 20;
-    if (isTablet) return 35;
-    return 50;
-  };
-
-  const velocityOffset = useTransform(
-    scrollVelocity,
-    [-2000, 2000],
-    getVelocityRange()
-  );
-  const xParallax = useSpring(velocityOffset, { stiffness: 100, damping: 30 });
-
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8 }}
-      className="w-full bg-[#0B1120]/50 border-y border-white/5 backdrop-blur-sm py-8 md:py-12 overflow-hidden relative z-20"
-    >
-      <div className="max-w-7xl mx-auto px-4 mb-8 md:mb-10 text-center">
-        <p className="text-sm md:text-lg text-[#00BFFF] font-sans uppercase tracking-[0.15em] md:tracking-[0.2em] font-semibold drop-shadow-[0_0_5px_rgba(0,191,255,0.5)]">
-          Supported Payment Methods
-        </p>
-      </div>
+    <section className="py-16 md:py-24 relative overflow-hidden">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
-      <div className="relative">
-        <div className="absolute inset-y-0 left-0 w-20 md:w-40 bg-gradient-to-r from-[#0B1120] to-transparent z-10 pointer-events-none" />
-        <div className="absolute inset-y-0 right-0 w-20 md:w-40 bg-gradient-to-l from-[#0B1120] to-transparent z-10 pointer-events-none" />
+        {/* Title */}
+        <div className="text-center mb-10">
+          <h3 className="text-lg sm:text-xl md:text-2xl font-black uppercase tracking-[0.25em] text-cyan-400 drop-shadow-[0_0_12px_rgba(34,211,238,0.35)]">
+            Supported Payment Methods
+          </h3>
+        </div>
 
-        <motion.div style={{ x: xParallax }} className="flex">
-          <motion.div
-            className="flex gap-4 sm:gap-8 md:gap-12 px-4 items-center"
-            animate={{ x: ["0%", "-50%"] }}
-            transition={{
-              repeat: Infinity,
-              ease: "linear",
-              duration: getDuration(),
-            }}
-            style={{ width: "fit-content" }}
-          >
-            {[...logos, ...logos, ...logos, ...logos].map((logo, index) => (
-              <PaymentLogo key={index} logo={logo} />
-            ))}
-          </motion.div>
-        </motion.div>
+        {/* Logos */}
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4 sm:gap-6">
+
+          {logos.map((logo, idx) => (
+            <motion.div
+              key={idx}
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 300 }}
+              className="flex items-center justify-center
+              h-20 sm:h-20 md:h-24
+              rounded-xl
+              bg-white/90
+              shadow-[0_0_20px_rgba(255,255,255,0.08)]
+              backdrop-blur-sm"
+            >
+              <img
+                src={logo.src}
+                alt={logo.name}
+                className="h-12 sm:h-10 md:h-12 object-contain"
+                style={{ transform: `scale(${logo.scale || 1})` }}
+              />
+            </motion.div>
+          ))}
+
+        </div>
       </div>
-    </motion.div>
+    </section>
   );
 };
 
