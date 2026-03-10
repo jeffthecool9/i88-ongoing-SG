@@ -420,7 +420,7 @@ useEffect(() => {
                         </span>
                         <span className="text-[9px] text-gray-700 sm:hidden">•</span>
                         <span className="text-[9px] sm:hidden font-bold text-gray-400">
-                          Deposited RM {tx.deposit.toLocaleString()}
+                          Deposited $ {tx.deposit.toLocaleString()}
                         </span>
                       </div>
                     </div>
@@ -1060,7 +1060,7 @@ const pastEvents = [
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold tracking-wide bg-white/10 text-gray-200 border border-white/10">
                   STARTER
                 </div>
-                <h3 className="mt-4 text-xl font-extrabold text-white">Deposit RM50</h3>
+                <h3 className="mt-4 text-xl font-extrabold text-white">Deposit $50</h3>
                 <p className="mt-2 text-sm text-gray-300">
                   Activate <span className="text-cyan-400 font-bold">88 FREE TOKENS</span>
                 </p>
@@ -1094,14 +1094,14 @@ const pastEvents = [
 
             <div className="flex items-start justify-between gap-4">
               <div>
-                <h3 className="text-xl font-extrabold text-white">Deposit RM100</h3>
+                <h3 className="text-xl font-extrabold text-white">Deposit $100</h3>
                 <p className="mt-2 text-sm text-gray-200">
-                  Activate <span className="text-cyan-400 font-black">168 FREE TOKENS</span>
+                  Activate <span className="text-cyan-400 font-black">188 FREE TOKENS</span>
                 </p>
               </div>
 
               <div className="text-right">
-                <div className="text-3xl font-black text-white leading-none">168</div>
+                <div className="text-3xl font-black text-white leading-none">188</div>
                 <div className="text-xs text-cyan-200/80 tracking-wider mt-1">TOKENS</div>
               </div>
             </div>
