@@ -9,9 +9,9 @@ import {
   useScroll,
   useTransform,
   useSpring,
-  useVelocity,
   AnimatePresence,
 } from "motion/react";
+
 // Scroll Reveal Component
 function ScrollReveal({
   children,
@@ -41,6 +41,7 @@ function ScrollReveal({
     </motion.div>
   );
 }
+
 // Sound Utility
 const playSFX = (type: "click" | "alert" | "success") => {
   const sounds = {
@@ -49,7 +50,13 @@ const playSFX = (type: "click" | "alert" | "success") => {
     success: "https://assets.mixkit.co/active_storage/sfx/1435/1435-preview.mp3",
   };
 
-  const sectionTitle3DClass =
+  const audio = new Audio(sounds[type]);
+  audio.volume = 0.2;
+  audio.play().catch(() => {});
+};
+
+// ===== 3D / Glossy Typography =====
+const sectionTitle3DClass =
   "text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight leading-[1.02] bg-gradient-to-b from-[#ffffff] via-[#f4f8ff] to-[#b8c8de] bg-clip-text text-transparent drop-shadow-[0_2px_0_rgba(140,155,180,0.45)] [text-shadow:0_1px_0_rgba(255,255,255,0.14),0_10px_24px_rgba(0,0,0,0.28)]";
 
 const sectionTitleCyan3DClass =
@@ -57,11 +64,15 @@ const sectionTitleCyan3DClass =
 
 const sectionSubtitleClass =
   "mt-4 text-base sm:text-lg text-[#bfc9d8] font-medium [text-shadow:0_1px_0_rgba(255,255,255,0.04)]";
-  
-  const audio = new Audio(sounds[type]);
-  audio.volume = 0.2;
-  audio.play().catch(() => {});
-};
+
+const statNumberClass =
+  "text-2xl sm:text-3xl md:text-4xl font-black tracking-tighter bg-gradient-to-b from-white via-[#eefcff] to-[#9fd8ff] bg-clip-text text-transparent drop-shadow-[0_2px_0_rgba(80,130,160,0.35)] [text-shadow:0_1px_0_rgba(255,255,255,0.14),0_10px_20px_rgba(0,191,255,0.16)]";
+
+const cyanShineClass =
+  "bg-gradient-to-r from-[#7ef6ff] via-[#26deff] to-[#00bfff] bg-clip-text text-transparent drop-shadow-[0_0_12px_rgba(0,191,255,0.32)]";
+
+const mediumTitleClass =
+  "text-xl sm:text-2xl md:text-3xl font-black uppercase tracking-tight bg-gradient-to-b from-white via-[#f4fbff] to-[#b9dfff] bg-clip-text text-transparent drop-shadow-[0_2px_0_rgba(100,145,175,0.35)] [text-shadow:0_1px_0_rgba(255,255,255,0.12),0_8px_18px_rgba(0,0,0,0.22)]";
 
 const CyberBackground = () => {
   const { scrollY } = useScroll();
@@ -174,7 +185,7 @@ const AnimatedUnderline = ({ children }: { children: React.ReactNode }) => {
     >
       {children}
       <motion.span
-        className="absolute -bottom-1 left-0 h-[2px] bg-cyan-500"
+        className="absolute -bottom-1 left-0 h-[3px] bg-gradient-to-r from-[#33dfff] via-[#00bfff] to-[#33dfff] shadow-[0_0_12px_rgba(0,191,255,0.35)]"
         initial={{ width: 0 }}
         whileInView={{ width: "100%" }}
         viewport={{ once: true }}
@@ -286,51 +297,51 @@ const LiveTransactions = () => {
 
   const [activity, setActivity] = useState<any[]>([]);
 
-useEffect(() => {
-  const initial: any[] = [
-    {
-      id: Math.random().toString(36).substr(2, 9),
-      user: malaysianNames[Math.floor(Math.random() * malaysianNames.length)],
-      deposit: 30,
-      spins: 0,
-      time: "Just now",
-    },
-    {
-      id: Math.random().toString(36).substr(2, 9),
-      user: malaysianNames[Math.floor(Math.random() * malaysianNames.length)],
-      deposit: 30,
-      spins: 0,
-      time: "2 mins ago",
-    },
-  ];
+  useEffect(() => {
+    const initial: any[] = [
+      {
+        id: Math.random().toString(36).substr(2, 9),
+        user: malaysianNames[Math.floor(Math.random() * malaysianNames.length)],
+        deposit: 30,
+        spins: 0,
+        time: "Just now",
+      },
+      {
+        id: Math.random().toString(36).substr(2, 9),
+        user: malaysianNames[Math.floor(Math.random() * malaysianNames.length)],
+        deposit: 30,
+        spins: 0,
+        time: "2 mins ago",
+      },
+    ];
 
-  for (let i = 0; i < 5; i++) {
-    initial.push(generateMemberActivity(`${(i + 1) * 3 + 2} mins ago`));
-  }
+    for (let i = 0; i < 5; i++) {
+      initial.push(generateMemberActivity(`${(i + 1) * 3 + 2} mins ago`));
+    }
 
-  setActivity(initial);
+    setActivity(initial);
 
-  let timeoutId: ReturnType<typeof setTimeout>;
+    let timeoutId: ReturnType<typeof setTimeout>;
 
-  const scheduleNextUpdate = () => {
-    const randomDelay = Math.floor(Math.random() * (50000 - 10000 + 1)) + 10000; 
-    // random 10s to 50s
+    const scheduleNextUpdate = () => {
+      const randomDelay =
+        Math.floor(Math.random() * (50000 - 10000 + 1)) + 10000;
 
-    timeoutId = setTimeout(() => {
-      setActivity((prev) => {
-        const newEntry = generateMemberActivity();
-        playSFX("alert");
-        return [newEntry, ...prev.slice(0, 6)];
-      });
+      timeoutId = setTimeout(() => {
+        setActivity((prev) => {
+          const newEntry = generateMemberActivity();
+          playSFX("alert");
+          return [newEntry, ...prev.slice(0, 6)];
+        });
 
-      scheduleNextUpdate();
-    }, randomDelay);
-  };
+        scheduleNextUpdate();
+      }, randomDelay);
+    };
 
-  scheduleNextUpdate();
+    scheduleNextUpdate();
 
-  return () => clearTimeout(timeoutId);
-}, []);
+    return () => clearTimeout(timeoutId);
+  }, []);
 
   const maskUser = (user: string) => user.substring(0, 5) + "***";
   const recentActivity = activity.slice(0, 10);
@@ -362,7 +373,7 @@ useEffect(() => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center mb-12"
         >
-          <h2 className="text-2xl font-bold text-white">
+          <h2 className={sectionTitle3DClass}>
             <AnimatedUnderline>Recent Joiners</AnimatedUnderline>
           </h2>
           <p className="mt-2 text-gray-400 text-sm font-sans">
@@ -373,9 +384,7 @@ useEffect(() => {
         <div className="max-w-2xl mx-auto">
           <div className="flex items-center gap-2 mb-4 px-2">
             <div className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-pulse" />
-            <h3 className="text-base md:text-lg font-bold text-white uppercase tracking-wider">
-              Recent Joins & Deposits
-            </h3>
+            <h3 className={sectionTitleCyan3DClass}>Recent Joins & Deposits</h3>
           </div>
 
           <div className="rounded-none overflow-hidden border border-white/5">
@@ -427,7 +436,9 @@ useEffect(() => {
                         <span className="text-[9px] sm:text-[10px] font-bold text-gray-500 uppercase tracking-wider">
                           {tx.time}
                         </span>
-                        <span className="text-[9px] text-gray-700 sm:hidden">•</span>
+                        <span className="text-[9px] text-gray-700 sm:hidden">
+                          •
+                        </span>
                         <span className="text-[9px] sm:hidden font-bold text-gray-400">
                           Deposited $ {tx.deposit.toLocaleString()}
                         </span>
@@ -444,7 +455,7 @@ useEffect(() => {
                   <div className="text-right whitespace-nowrap">
                     <div
                       className={`text-sm sm:text-lg md:text-xl font-black font-sans tracking-tighter ${
-                        tx.spins > 0 ? "text-cyan-400" : "text-gray-500"
+                        tx.spins > 0 ? cyanShineClass : "text-gray-500"
                       }`}
                     >
                       {tx.spins > 0 ? `${tx.spins} Free Tokens` : "No Bonus"}
@@ -470,13 +481,11 @@ const PaymentRiver = () => {
     {
       name: "Bitcoin",
       src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/1200px-Bitcoin.svg.png",
-      isBank: false,
       scale: 1,
     },
     {
       name: "USDT",
       src: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Tether_USDT.png/1200px-Tether_USDT.png",
-      isBank: false,
       scale: 1,
     },
   ];
@@ -486,11 +495,11 @@ const PaymentRiver = () => {
   return (
     <section className="py-16 md:py-24 relative overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div className="text-center mb-8 md:mb-10">
-  <h3 className={sectionTitleCyan3DClass}>
-    Supported Payment Methods
-  </h3>
-</div>
+        <div className="text-center mb-8 md:mb-10">
+          <h3 className={sectionTitleCyan3DClass}>
+            Supported Payment Methods
+          </h3>
+        </div>
 
         <div className="relative overflow-hidden">
           <motion.div
@@ -651,53 +660,59 @@ const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
 
-  // ✅ SCROLL PROGRESS BAR (BIG VISUAL DIFFERENCE)
   const { scrollYProgress } = useScroll();
-  const progressBar = useSpring(scrollYProgress, { stiffness: 120, damping: 25 });
+  const progressBar = useSpring(scrollYProgress, {
+    stiffness: 120,
+    damping: 25,
+  });
 
-const pastEvents = [
-  {
-    id: 1,
-    title: "The 8 Immortals Treasure",
-    subtitle: "CNY Special Event",
-    date: "Feb 2026",
-    icon: "Coins",
-    color: "from-red-600 to-amber-500",
-    accent: "#ef4444",
-    image: "/cny.png",
-    prizes: ["RM38,888 Free Credit Pool", "Limited Edition Gold Tokens", "Angpow Surprises"],
-    winners: [
-      { name: "ami**9*", prize: "$38,888" },
-      { name: "lucky**w*", prize: "$38,888" },
-      { name: "u*z***zi*", prize: "$38,888" },
-    ],
-    featured: true,
-    desc: "Our most recent lunar celebration where 8 lucky immortals shared a massive credit pool.",
-  },
- {
-  id: 2,
-  title: "Xmas Monopoly Mini Game",
-  subtitle: "Christmas 2025",
-  date: "Dec 2025",
-  icon: "Gift",
-  color: "from-blue-600 to-cyan-400",
-  accent: "#00BFFF",
-  image: "/xmas.png",
-  prizes: [
-    "Rolex Luxury Watch",
-    "iPhone 17 Pro Max",
-    "iPad Pro",
-    "Cruise Tickets",
-    "Apple Watch",
-  ],
-  winners: [
-    { name: "rolex_owner", prize: "Rolex Cosmograph Daytona" },
-    { name: "cruise_lucky", prize: "iPhone 17 Pro Max" },
-    { name: "apple_fan", prize: "iPad Pro" },
-  ],
-  featured: false,
-  desc: "A festive board game experience where players traveled through a winter map to claim luxury physical prizes.",
-},
+  const pastEvents = [
+    {
+      id: 1,
+      title: "The 8 Immortals Treasure",
+      subtitle: "CNY Special Event",
+      date: "Feb 2026",
+      icon: "Coins",
+      color: "from-red-600 to-amber-500",
+      accent: "#ef4444",
+      image: "/cny.png",
+      prizes: [
+        "RM38,888 Free Credit Pool",
+        "Limited Edition Gold Tokens",
+        "Angpow Surprises",
+      ],
+      winners: [
+        { name: "ami**9*", prize: "$38,888" },
+        { name: "lucky**w*", prize: "$38,888" },
+        { name: "u*z***zi*", prize: "$38,888" },
+      ],
+      featured: true,
+      desc: "Our most recent lunar celebration where 8 lucky immortals shared a massive credit pool.",
+    },
+    {
+      id: 2,
+      title: "Xmas Monopoly Mini Game",
+      subtitle: "Christmas 2025",
+      date: "Dec 2025",
+      icon: "Gift",
+      color: "from-blue-600 to-cyan-400",
+      accent: "#00BFFF",
+      image: "/xmas.png",
+      prizes: [
+        "Rolex Luxury Watch",
+        "iPhone 17 Pro Max",
+        "iPad Pro",
+        "Cruise Tickets",
+        "Apple Watch",
+      ],
+      winners: [
+        { name: "rolex_owner", prize: "Rolex Cosmograph Daytona" },
+        { name: "cruise_lucky", prize: "iPhone 17 Pro Max" },
+        { name: "apple_fan", prize: "iPad Pro" },
+      ],
+      featured: false,
+      desc: "A festive board game experience where players traveled through a winter map to claim luxury physical prizes.",
+    },
   ];
 
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -740,9 +755,7 @@ const pastEvents = [
                       { label: "Payout Rate", value: "98.5%" },
                     ].map((stat, i) => (
                       <div key={i} className="flex flex-col items-center">
-                        <span className="text-2xl sm:text-3xl font-black text-white tracking-tighter mb-1">
-                          {stat.value}
-                        </span>
+                        <span className={statNumberClass}>{stat.value}</span>
                         <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">
                           {stat.label}
                         </span>
@@ -770,455 +783,461 @@ const pastEvents = [
               <LiveTransactions />
             </motion.div>
 
-        {/* Past Events */}
-<section className="relative py-24 bg-[#0f172a] overflow-hidden">
-  <ExperienceBackground />
+            {/* Past Events */}
+            <section className="relative py-24 bg-[#0f172a] overflow-hidden">
+              <ExperienceBackground />
 
-  <motion.div
-    initial={{ opacity: 0 }}
-    whileInView={{ opacity: 1 }}
-    viewport={{ once: true }}
-    transition={{ duration: 1.2, ease: "easeOut" }}
-    className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
-  >
-  {/* Title */}
-<motion.div
-  initial={{ opacity: 0, y: 15 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  viewport={{ once: true }}
-  transition={{ duration: 1, ease: "easeOut" }}
-  className="text-center mb-16"
->
-  <h2 className={sectionTitle3DClass}>
-    <AnimatedUnderline>Past Big Events</AnimatedUnderline>
-  </h2>
-  <p className={sectionSubtitleClass}>
-    Celebrating our past winners and events
-  </p>
-</motion.div>
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.2, ease: "easeOut" }}
+                className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
+              >
+                {/* Title */}
+                <motion.div
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1, ease: "easeOut" }}
+                  className="text-center mb-16"
+                >
+                  <h2 className={sectionTitle3DClass}>
+                    <AnimatedUnderline>Past Big Events</AnimatedUnderline>
+                  </h2>
+                  <p className={sectionSubtitleClass}>
+                    Celebrating our past winners and events
+                  </p>
+                </motion.div>
 
-    {/* Carousel Container */}
-    <div className="relative group/carousel">
-      {/* Left Arrow */}
-      <div className="absolute top-1/2 left-0 sm:-left-8 -translate-y-1/2 z-20 md:opacity-0 md:group-hover/carousel:opacity-100 transition-opacity duration-300">
-        <button
-          onClick={() => scroll("left")}
-          className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/60 border border-white/20 backdrop-blur-md flex items-center justify-center text-white hover:bg-cyan-500 hover:border-cyan-400 transition-all shadow-lg"
-        >
-          <i className="fas fa-chevron-left text-sm sm:text-base"></i>
-        </button>
-      </div>
+                {/* Carousel Container */}
+                <div className="relative group/carousel">
+                  {/* Left Arrow */}
+                  <div className="absolute top-1/2 left-0 sm:-left-8 -translate-y-1/2 z-20 md:opacity-0 md:group-hover/carousel:opacity-100 transition-opacity duration-300">
+                    <button
+                      onClick={() => scroll("left")}
+                      className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/60 border border-white/20 backdrop-blur-md flex items-center justify-center text-white hover:bg-cyan-500 hover:border-cyan-400 transition-all shadow-lg"
+                    >
+                      <i className="fas fa-chevron-left text-sm sm:text-base"></i>
+                    </button>
+                  </div>
 
-      {/* Right Arrow */}
-      <div className="absolute top-1/2 right-0 sm:-right-8 -translate-y-1/2 z-20 md:opacity-0 md:group-hover/carousel:opacity-100 transition-opacity duration-300">
-        <button
-          onClick={() => scroll("right")}
-          className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/60 border border-white/20 backdrop-blur-md flex items-center justify-center text-white hover:bg-cyan-500 hover:border-cyan-400 transition-all shadow-lg"
-        >
-          <i className="fas fa-chevron-right text-sm sm:text-base"></i>
-        </button>
-      </div>
+                  {/* Right Arrow */}
+                  <div className="absolute top-1/2 right-0 sm:-right-8 -translate-y-1/2 z-20 md:opacity-0 md:group-hover/carousel:opacity-100 transition-opacity duration-300">
+                    <button
+                      onClick={() => scroll("right")}
+                      className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/60 border border-white/20 backdrop-blur-md flex items-center justify-center text-white hover:bg-cyan-500 hover:border-cyan-400 transition-all shadow-lg"
+                    >
+                      <i className="fas fa-chevron-right text-sm sm:text-base"></i>
+                    </button>
+                  </div>
 
-      {/* Cards Row */}
-      <div
-        ref={scrollContainerRef}
-        className="flex overflow-x-auto gap-6 pb-12 snap-x snap-mandatory no-scrollbar scroll-smooth"
-        style={{ scrollbarWidth: "none", msOverflowStyle: "none" } as any}
-      >
-        {pastEvents.map((event, idx) => (
-          <motion.div
-            key={event.id}
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: idx * 0.1 }}
-            whileHover={{
-              y: -8,
-              scale: 1.01,
-              boxShadow: "0 20px 40px rgba(0, 0, 0, 0.4)",
-              borderColor: "rgba(255, 255, 255, 0.2)",
-            }}
-            className="relative flex-shrink-0 w-[90vw] sm:w-[85vw] md:w-[600px] snap-center group overflow-hidden bg-[#1e293b]/40 border border-white/5 backdrop-blur-xl p-6 sm:p-8 md:p-12 transition-all duration-500"
-          >
-            {/* Header */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 sm:mb-8">
-              <div>
-                <div className="flex items-center gap-3 mb-2">
-                  <span
-                    className={`px-3 py-1 text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-white bg-gradient-to-r ${event.color} shadow-lg`}
+                  {/* Cards Row */}
+                  <div
+                    ref={scrollContainerRef}
+                    className="flex overflow-x-auto gap-6 pb-12 snap-x snap-mandatory no-scrollbar scroll-smooth"
+                    style={
+                      { scrollbarWidth: "none", msOverflowStyle: "none" } as any
+                    }
                   >
-                    {event.subtitle}
-                  </span>
-                  <span className="text-[10px] sm:text-xs font-mono text-gray-500 uppercase tracking-widest">
-                    {event.date}
-                  </span>
-                </div>
+                    {pastEvents.map((event, idx) => (
+                      <motion.div
+                        key={event.id}
+                        initial={{ opacity: 0, x: 50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: idx * 0.1 }}
+                        whileHover={{
+                          y: -8,
+                          scale: 1.01,
+                          boxShadow: "0 20px 40px rgba(0, 0, 0, 0.4)",
+                          borderColor: "rgba(255, 255, 255, 0.2)",
+                        }}
+                        className="relative flex-shrink-0 w-[90vw] sm:w-[85vw] md:w-[600px] snap-center group overflow-hidden bg-[#1e293b]/40 border border-white/5 backdrop-blur-xl p-6 sm:p-8 md:p-12 transition-all duration-500"
+                      >
+                        {/* Header */}
+                        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 sm:mb-8">
+                          <div>
+                            <div className="flex items-center gap-3 mb-2">
+                              <span
+                                className={`px-3 py-1 text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-white bg-gradient-to-r ${event.color} shadow-lg`}
+                              >
+                                {event.subtitle}
+                              </span>
+                              <span className="text-[10px] sm:text-xs font-mono text-gray-500 uppercase tracking-widest">
+                                {event.date}
+                              </span>
+                            </div>
 
-                <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-white tracking-tighter uppercase group-hover:text-cyan-400 transition-colors">
-                  {event.title}
-                </h3>
-              </div>
+                            <h3 className={mediumTitleClass}>{event.title}</h3>
+                          </div>
 
-              {event.featured && (
-                <div className="flex items-center gap-2 text-amber-400">
-                  <i className="fas fa-star animate-pulse text-xs"></i>
-                  <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em]">
-                    Most Recent
-                  </span>
-                </div>
-              )}
-            </div>
+                          {event.featured && (
+                            <div className="flex items-center gap-2 text-amber-400">
+                              <i className="fas fa-star animate-pulse text-xs"></i>
+                              <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em]">
+                                Most Recent
+                              </span>
+                            </div>
+                          )}
+                        </div>
 
-            {/* Image */}
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, ease: "easeOut" }}
-              className="mb-8 sm:mb-10"
-            >
-              <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-black/20">
-                <img
-                  src={event.image}
-                  alt={`${event.title} showcase`}
-                  className="w-full h-[160px] sm:h-[220px] md:h-[260px] object-cover"
-                  loading="lazy"
-                />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
-                <div className="absolute bottom-3 left-3">
-                  <div className="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.25em] bg-black/50 border border-white/10 text-white/90 backdrop-blur">
-                    Event Highlight
+                        {/* Image */}
+                        <motion.div
+                          initial={{ opacity: 0, y: 12 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.7, ease: "easeOut" }}
+                          className="mb-8 sm:mb-10"
+                        >
+                          <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-black/20">
+                            <img
+                              src={event.image}
+                              alt={`${event.title} showcase`}
+                              className="w-full h-[160px] sm:h-[220px] md:h-[260px] object-cover"
+                              loading="lazy"
+                            />
+                            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
+                            <div className="absolute bottom-3 left-3">
+                              <div className="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.25em] bg-black/50 border border-white/10 text-white/90 backdrop-blur">
+                                Event Highlight
+                              </div>
+                            </div>
+                          </div>
+                        </motion.div>
+
+                        {/* Winners */}
+                        <div className="relative">
+                          <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-transparent -ml-6 -mr-6 sm:-ml-12 sm:-mr-12 pointer-events-none" />
+
+                          <h4 className={sectionTitleCyan3DClass}>
+                            Top Winners Spotlight
+                          </h4>
+
+                          <div className="space-y-3 relative z-10 mt-4">
+                            {event.winners.map((winner, wIdx) => (
+                              <motion.div
+                                key={wIdx}
+                                initial={{ opacity: 0, x: -10 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: idx * 0.1 + wIdx * 0.08 }}
+                                whileHover={{
+                                  scale: 1.015,
+                                  backgroundColor: "rgba(0, 0, 0, 0.45)",
+                                  boxShadow:
+                                    "0 0 26px rgba(34, 211, 238, 0.18)",
+                                  borderColor: "rgba(34, 211, 238, 0.9)",
+                                }}
+                                className="flex items-center justify-between gap-3 px-4 py-3 sm:px-5 sm:py-4 bg-black/25 border border-white/10 border-l-[3px] border-l-cyan-400/70 backdrop-blur-sm transition-all duration-300"
+                              >
+                                <div className="flex items-center gap-3 sm:gap-4 min-w-0 flex-1">
+                                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
+                                    <span className="text-[11px] sm:text-xs font-black tracking-widest text-white/80">
+                                      {String(wIdx + 1).padStart(2, "0")}
+                                    </span>
+                                  </div>
+
+                                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full overflow-hidden border border-white/10 bg-[#1e293b] flex-shrink-0">
+                                    <img
+                                      src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${winner.name}`}
+                                      alt={winner.name}
+                                      className="w-full h-full object-cover"
+                                      referrerPolicy="no-referrer"
+                                    />
+                                  </div>
+
+                                  <div className="min-w-0 flex-1">
+                                    <div className="text-sm sm:text-base md:text-lg font-black text-white uppercase tracking-tight truncate">
+                                      {winner.name.substring(0, 3)}***
+                                      {winner.name.slice(-2)}
+                                    </div>
+                                    <div className="text-[10px] sm:text-[11px] font-bold text-white/50 uppercase tracking-[0.22em] mt-0.5">
+                                      Winner
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div className="text-right flex-shrink-0 w-[120px] sm:w-[170px] md:w-[220px]">
+                                  <div
+                                    className={`text-sm sm:text-base md:text-xl font-black tracking-tight leading-tight break-words ${cyanShineClass}`}
+                                  >
+                                    {winner.prize}
+                                  </div>
+                                  <div className="text-[10px] sm:text-[11px] font-bold text-white/50 uppercase tracking-[0.22em] mt-0.5">
+                                    Prize
+                                  </div>
+                                </div>
+                              </motion.div>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Big Background Icon */}
+                        <div className="absolute -bottom-10 -right-10 opacity-[0.03] group-hover:opacity-[0.08] transition-opacity duration-700 pointer-events-none">
+                          <i
+                            className={`fas fa-${event.icon.toLowerCase()} text-[200px]`}
+                          ></i>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+
+                  {/* Dots */}
+                  <div className="flex justify-center gap-2 mt-4">
+                    {pastEvents.map((_, i) => (
+                      <div
+                        key={i}
+                        className="w-1.5 h-1.5 rounded-full bg-white/10"
+                      />
+                    ))}
                   </div>
                 </div>
-              </div>
-            </motion.div>
 
-                     {/* Winners */}
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-transparent -ml-6 -mr-6 sm:-ml-12 sm:-mr-12 pointer-events-none" />
+                {/* Bottom caption */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  className="mt-16 text-center"
+                >
+                  <p className="text-gray-500 text-xs font-sans uppercase tracking-[0.4em]">
+                    New events launching every month. Stay tuned
+                  </p>
+                </motion.div>
+              </motion.div>
+            </section>
 
-              <h4 className="text-[10px] sm:text-xs font-black text-cyan-400 uppercase tracking-[0.32em] mb-4 relative z-10">
-                Top Winners Spotlight
-              </h4>
+            {/* CTA */}
+            <section className="relative py-24 sm:py-32 px-4 overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-b from-[#0B1120] to-[#0f172a]" />
+              <motion.div
+                animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.2, 0.1] }}
+                transition={{ duration: 8, repeat: Infinity }}
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-500/20 rounded-full blur-[120px] pointer-events-none"
+              />
 
-              <div className="space-y-3 relative z-10">
-                {event.winners.map((winner, wIdx) => (
-                  <motion.div
-                    key={wIdx}
-                    initial={{ opacity: 0, x: -10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: idx * 0.1 + wIdx * 0.08 }}
-                    whileHover={{
-                      scale: 1.015,
-                      backgroundColor: "rgba(0, 0, 0, 0.45)",
-                      boxShadow: "0 0 26px rgba(34, 211, 238, 0.18)",
-                      borderColor: "rgba(34, 211, 238, 0.9)",
-                    }}
-                    className="flex items-center justify-between gap-3 px-4 py-3 sm:px-5 sm:py-4 bg-black/25 border border-white/10 border-l-[3px] border-l-cyan-400/70 backdrop-blur-sm transition-all duration-300"
-                  >
-                    {/* LEFT SIDE */}
-                    <div className="flex items-center gap-3 sm:gap-4 min-w-0 flex-1">
-                      <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
-                        <span className="text-[11px] sm:text-xs font-black tracking-widest text-white/80">
-                          {String(wIdx + 1).padStart(2, "0")}
-                        </span>
-                      </div>
+              <div className="max-w-4xl mx-auto relative z-10">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.98, y: 15 }}
+                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1, ease: "easeOut" }}
+                  className="bg-gradient-to-br from-[#1e293b] to-[#0f172a] border border-cyan-500/30 rounded-none p-10 sm:p-16 text-center shadow-[0_0_50px_rgba(0,191,255,0.1)] relative overflow-hidden"
+                >
+                  <div className="max-w-3xl mx-auto text-center">
+                    <motion.h2
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{
+                        duration: 0.8,
+                        ease: "easeOut",
+                        delay: 0.1,
+                      }}
+                      className={sectionTitle3DClass}
+                    >
+                      Unlock Your Welcome
+                      <br />
+                      Reward
+                    </motion.h2>
 
-                      <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full overflow-hidden border border-white/10 bg-[#1e293b] flex-shrink-0">
-                        <img
-                          src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${winner.name}`}
-                          alt={winner.name}
-                          className="w-full h-full object-cover"
-                          referrerPolicy="no-referrer"
-                        />
-                      </div>
+                    <motion.p
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{
+                        duration: 0.8,
+                        ease: "easeOut",
+                        delay: 0.2,
+                      }}
+                      className={sectionSubtitleClass}
+                    >
+                      Choose a tier. Rewards activate instantly after deposit
+                    </motion.p>
 
-                      <div className="min-w-0 flex-1">
-                        <div className="text-sm sm:text-base md:text-lg font-black text-white uppercase tracking-tight truncate">
-                          {winner.name.substring(0, 3)}***{winner.name.slice(-2)}
+                    <motion.div
+                      initial={{ opacity: 0, y: 12 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{
+                        duration: 0.9,
+                        ease: "easeOut",
+                        delay: 0.3,
+                      }}
+                      className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-5 text-left"
+                    >
+                      {/* $50 */}
+                      <motion.div
+                        whileHover={{ y: -6 }}
+                        transition={{ type: "spring", stiffness: 350, damping: 22 }}
+                        className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm p-7 shadow-[0_0_30px_rgba(255,255,255,0.06)] hover:bg-white/10 transition-colors"
+                        onMouseEnter={() => playSFX("click")}
+                      >
+                        <div className="flex items-center justify-between gap-4">
+                          <div>
+                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold tracking-wide bg-white/10 text-gray-200 border border-white/10">
+                              STARTER
+                            </div>
+
+                            <h3
+                              className="
+                                mt-5 text-[34px] md:text-[40px]
+                                font-black leading-[0.95] tracking-tight
+                                bg-gradient-to-b from-white via-[#f4f8ff] to-[#b9c7dc]
+                                bg-clip-text text-transparent
+                                drop-shadow-[0_2px_0_rgba(120,140,170,0.35)]
+                                [text-shadow:0_1px_0_rgba(255,255,255,0.12),0_10px_22px_rgba(0,0,0,0.28)]
+                              "
+                            >
+                              Deposit
+                              <br />
+                              <span className="inline-block mt-1">$50</span>
+                            </h3>
+
+                            <p className="mt-3 text-[15px] md:text-[16px] font-semibold text-[#d3dceb] leading-snug">
+                              Activate{" "}
+                              <span className={cyanShineClass}>
+                                88 FREE TOKENS
+                              </span>
+                            </p>
+                          </div>
+
+                          <div className="text-right">
+                            <div
+                              className="
+                                text-[54px] md:text-[62px]
+                                font-black leading-none tracking-tight
+                                bg-gradient-to-b from-white via-[#eef7ff] to-[#9fb9d9]
+                                bg-clip-text text-transparent
+                                drop-shadow-[0_2px_0_rgba(110,130,155,0.35)]
+                                [text-shadow:0_1px_0_rgba(255,255,255,0.14),0_12px_24px_rgba(0,0,0,0.28)]
+                              "
+                            >
+                              88
+                            </div>
+                            <div className="text-[13px] font-bold text-[#8eb3d8] tracking-[0.18em] mt-1 uppercase">
+                              Tokens
+                            </div>
+                          </div>
                         </div>
-                        <div className="text-[10px] sm:text-[11px] font-bold text-white/50 uppercase tracking-[0.22em] mt-0.5">
-                          Winner
+                      </motion.div>
+
+                      {/* $100 */}
+                      <motion.div
+                        whileHover={{ y: -6 }}
+                        transition={{ type: "spring", stiffness: 350, damping: 22 }}
+                        className="relative overflow-hidden rounded-2xl border border-cyan-400/30 bg-gradient-to-br from-cyan-500/10 to-white/5 backdrop-blur-sm p-7 shadow-[0_0_45px_rgba(0,191,255,0.18)] hover:from-cyan-500/15 transition-colors"
+                        onMouseEnter={() => playSFX("click")}
+                      >
+                        <div className="flex items-center justify-between gap-3 mb-4">
+                          <div className="flex items-center gap-2">
+                            <span className="px-3 py-1 rounded-full text-[11px] font-semibold tracking-wide bg-cyan-500/10 text-cyan-200 border border-cyan-400/20">
+                              BEST VALUE
+                            </span>
+                            <span className="px-3 py-1 rounded-full text-[11px] font-semibold tracking-wide bg-cyan-500/15 text-cyan-100 border border-cyan-400/25">
+                              MOST CHOSEN
+                            </span>
+                          </div>
                         </div>
-                      </div>
-                    </div>
 
-                    {/* RIGHT SIDE */}
-                    <div className="text-right flex-shrink-0 w-[120px] sm:w-[170px] md:w-[220px]">
-                      <div className="text-sm sm:text-base md:text-xl font-black text-cyan-300 tracking-tight leading-tight break-words">
-                        {winner.prize}
-                      </div>
-                      <div className="text-[10px] sm:text-[11px] font-bold text-white/50 uppercase tracking-[0.22em] mt-0.5">
-                        Prize
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
+                        <div className="flex items-start justify-between gap-4">
+                          <div>
+                            <h3
+                              className="
+                                text-[34px] md:text-[40px]
+                                font-black leading-[0.95] tracking-tight
+                                bg-gradient-to-b from-white via-[#f4fbff] to-[#b9dfff]
+                                bg-clip-text text-transparent
+                                drop-shadow-[0_2px_0_rgba(100,145,175,0.35)]
+                                [text-shadow:0_1px_0_rgba(255,255,255,0.12),0_10px_22px_rgba(0,0,0,0.25)]
+                              "
+                            >
+                              Deposit
+                              <br />
+                              <span className="inline-block mt-1">$100</span>
+                            </h3>
+
+                            <p className="mt-3 text-[15px] md:text-[16px] font-semibold text-[#d7e8f4] leading-snug">
+                              Activate{" "}
+                              <span className={cyanShineClass}>
+                                188 FREE TOKENS
+                              </span>
+                            </p>
+                          </div>
+
+                          <div className="text-right">
+                            <div
+                              className="
+                                text-[54px] md:text-[62px]
+                                font-black leading-none tracking-tight
+                                bg-gradient-to-b from-white via-[#eefcff] to-[#9fd8ff]
+                                bg-clip-text text-transparent
+                                drop-shadow-[0_2px_0_rgba(80,130,160,0.35)]
+                                [text-shadow:0_1px_0_rgba(255,255,255,0.14),0_12px_24px_rgba(0,191,255,0.18)]
+                              "
+                            >
+                              188
+                            </div>
+                            <div className="text-[13px] font-bold text-cyan-300/80 tracking-[0.18em] mt-1 uppercase">
+                              Tokens
+                            </div>
+                          </div>
+                        </div>
+                      </motion.div>
+                    </motion.div>
+
+                    {/* CTA Button */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{
+                        duration: 1,
+                        ease: "easeOut",
+                        delay: 0.45,
+                      }}
+                      className="mt-10"
+                    >
+                      <motion.button
+                        whileHover={{ scale: 1.05, y: -8 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => playSFX("success")}
+                        className="bg-cyan-500 hover:bg-cyan-400 text-black font-black text-lg md:text-xl px-12 py-5 rounded-full uppercase tracking-widest transition-all shadow-[0_0_20px_rgba(0,191,255,0.3)]"
+                      >
+                        Start Winning Now
+                      </motion.button>
+
+                      <p className="mt-8 text-xs text-gray-500 font-sans uppercase tracking-[0.2em]">
+                        * Limited to New Member only
+                      </p>
+                    </motion.div>
+                  </div>
+                </motion.div>
               </div>
-            </div>
-            {/* Big Background Icon */}
-            <div className="absolute -bottom-10 -right-10 opacity-[0.03] group-hover:opacity-[0.08] transition-opacity duration-700 pointer-events-none">
-              <i className={`fas fa-${event.icon.toLowerCase()} text-[200px]`}></i>
-            </div>
-          </motion.div>
-        ))}
-      </div>
+            </section>
 
-      {/* Dots (OUTSIDE cards row, INSIDE carousel) */}
-      <div className="flex justify-center gap-2 mt-4">
-        {pastEvents.map((_, i) => (
-          <div key={i} className="w-1.5 h-1.5 rounded-full bg-white/10" />
-        ))}
-      </div>
-    </div>
+            {/* Footer */}
+            <footer className="bg-[#0B1120] border-t border-white/5 py-12 sm:py-20">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="flex flex-col items-center text-center">
+                  <img
+                    src="/i882.png"
+                    alt="i88 Logo"
+                    className="mx-auto mb-6 w-20 sm:w-24 md:w-28 lg:w-32 opacity-95 brightness-110 drop-shadow-[0_0_12px_rgba(56,189,248,0.45)]"
+                  />
 
-    {/* Bottom caption (OUTSIDE carousel, INSIDE section wrapper) */}
-    <motion.div
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
-      className="mt-16 text-center"
-    >
-      <p className="text-gray-500 text-xs font-sans uppercase tracking-[0.4em]">
-        New events launching every month. Stay tuned
-      </p>
-    </motion.div>
-  </motion.div>
-</section>
-    {/* CTA */}
-<section className="relative py-24 sm:py-32 px-4 overflow-hidden">
-  <div className="absolute inset-0 bg-gradient-to-b from-[#0B1120] to-[#0f172a]" />
-  <motion.div
-    animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.2, 0.1] }}
-    transition={{ duration: 8, repeat: Infinity }}
-    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-500/20 rounded-full blur-[120px] pointer-events-none"
-  />
+                  <p className="text-gray-400 text-base sm:text-lg leading-relaxed max-w-2xl">
+                    i88 is the leading online gaming platform in Asia,
+                    providing a secure and fair gaming experience for all players
+                  </p>
 
-  <div className="max-w-4xl mx-auto relative z-10">
-    <motion.div
-      initial={{ opacity: 0, scale: 0.98, y: 15 }}
-      whileInView={{ opacity: 1, scale: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 1, ease: "easeOut" }}
-      className="bg-gradient-to-br from-[#1e293b] to-[#0f172a] border border-cyan-500/30 rounded-none p-10 sm:p-16 text-center shadow-[0_0_50px_rgba(0,191,255,0.1)] relative overflow-hidden"
-    >
-      <div className="max-w-3xl mx-auto text-center">
-        <motion.h2
-  initial={{ opacity: 0, y: 10 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  viewport={{ once: true }}
-  transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
-  className={sectionTitle3DClass}
->
-  Unlock Your Welcome
-  <br />
-  Reward
-</motion.h2>
-
-<motion.p
-  initial={{ opacity: 0, y: 10 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  viewport={{ once: true }}
-  transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-  className={sectionSubtitleClass}
->
-  Choose a tier. Rewards activate instantly after deposit
-</motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.9, ease: "easeOut", delay: 0.3 }}
-          className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-5 text-left"
-        >
-          {/* $50 */}
-          <motion.div
-            whileHover={{ y: -6 }}
-            transition={{ type: "spring", stiffness: 350, damping: 22 }}
-            className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm p-7 shadow-[0_0_30px_rgba(255,255,255,0.06)] hover:bg-white/10 transition-colors"
-            onMouseEnter={() => playSFX("click")}
-          >
-            <div className="flex items-center justify-between gap-4">
-              <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold tracking-wide bg-white/10 text-gray-200 border border-white/10">
-                  STARTER
-                </div>
-
-                <h3
-                  className="
-                    mt-5 text-[34px] md:text-[40px]
-                    font-black leading-[0.95] tracking-tight
-                    bg-gradient-to-b from-white via-[#f4f8ff] to-[#b9c7dc]
-                    bg-clip-text text-transparent
-                    drop-shadow-[0_2px_0_rgba(120,140,170,0.35)]
-                    [text-shadow:0_1px_0_rgba(255,255,255,0.12),0_10px_22px_rgba(0,0,0,0.28)]
-                  "
-                >
-                  Deposit
-                  <br />
-                  <span className="inline-block mt-1">$50</span>
-                </h3>
-
-                <p className="mt-3 text-[15px] md:text-[16px] font-semibold text-[#d3dceb] leading-snug">
-                  Activate{" "}
-                  <span
-                    className="
-                      font-black uppercase
-                      bg-gradient-to-r from-[#6ef0ff] via-[#1fd8ff] to-[#00bfff]
-                      bg-clip-text text-transparent
-                      drop-shadow-[0_0_10px_rgba(0,191,255,0.28)]
-                    "
-                  >
-                    88 FREE TOKENS
-                  </span>
-                </p>
-              </div>
-
-              <div className="text-right">
-                <div
-                  className="
-                    text-[54px] md:text-[62px]
-                    font-black leading-none tracking-tight
-                    bg-gradient-to-b from-white via-[#eef7ff] to-[#9fb9d9]
-                    bg-clip-text text-transparent
-                    drop-shadow-[0_2px_0_rgba(110,130,155,0.35)]
-                    [text-shadow:0_1px_0_rgba(255,255,255,0.14),0_12px_24px_rgba(0,0,0,0.28)]
-                  "
-                >
-                  88
-                </div>
-                <div className="text-[13px] font-bold text-[#8eb3d8] tracking-[0.18em] mt-1 uppercase">
-                  Tokens
+                  <p className="text-gray-500 text-sm mt-10">
+                    © 2026 i88 Gaming Group. All rights reserved
+                  </p>
                 </div>
               </div>
-            </div>
-          </motion.div>
-
-          {/* $100 */}
-          <motion.div
-            whileHover={{ y: -6 }}
-            transition={{ type: "spring", stiffness: 350, damping: 22 }}
-            className="relative overflow-hidden rounded-2xl border border-cyan-400/30 bg-gradient-to-br from-cyan-500/10 to-white/5 backdrop-blur-sm p-7 shadow-[0_0_45px_rgba(0,191,255,0.18)] hover:from-cyan-500/15 transition-colors"
-            onMouseEnter={() => playSFX("click")}
-          >
-            <div className="flex items-center justify-between gap-3 mb-4">
-              <div className="flex items-center gap-2">
-                <span className="px-3 py-1 rounded-full text-[11px] font-semibold tracking-wide bg-cyan-500/10 text-cyan-200 border border-cyan-400/20">
-                  BEST VALUE
-                </span>
-                <span className="px-3 py-1 rounded-full text-[11px] font-semibold tracking-wide bg-cyan-500/15 text-cyan-100 border border-cyan-400/25">
-                  MOST CHOSEN
-                </span>
-              </div>
-            </div>
-
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <h3
-                  className="
-                    text-[34px] md:text-[40px]
-                    font-black leading-[0.95] tracking-tight
-                    bg-gradient-to-b from-white via-[#f4fbff] to-[#b9dfff]
-                    bg-clip-text text-transparent
-                    drop-shadow-[0_2px_0_rgba(100,145,175,0.35)]
-                    [text-shadow:0_1px_0_rgba(255,255,255,0.12),0_10px_22px_rgba(0,0,0,0.25)]
-                  "
-                >
-                  Deposit
-                  <br />
-                  <span className="inline-block mt-1">$100</span>
-                </h3>
-
-                <p className="mt-3 text-[15px] md:text-[16px] font-semibold text-[#d7e8f4] leading-snug">
-                  Activate{" "}
-                  <span
-                    className="
-                      font-black uppercase
-                      bg-gradient-to-r from-[#7ef6ff] via-[#26deff] to-[#00bfff]
-                      bg-clip-text text-transparent
-                      drop-shadow-[0_0_12px_rgba(0,191,255,0.32)]
-                    "
-                  >
-                    188 FREE TOKENS
-                  </span>
-                </p>
-              </div>
-
-              <div className="text-right">
-                <div
-                  className="
-                    text-[54px] md:text-[62px]
-                    font-black leading-none tracking-tight
-                    bg-gradient-to-b from-white via-[#eefcff] to-[#9fd8ff]
-                    bg-clip-text text-transparent
-                    drop-shadow-[0_2px_0_rgba(80,130,160,0.35)]
-                    [text-shadow:0_1px_0_rgba(255,255,255,0.14),0_12px_24px_rgba(0,191,255,0.18)]
-                  "
-                >
-                  188
-                </div>
-                <div className="text-[13px] font-bold text-cyan-300/80 tracking-[0.18em] mt-1 uppercase">
-                  Tokens
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </motion.div>
-
-        {/* CTA Button */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, ease: "easeOut", delay: 0.45 }}
-          className="mt-10"
-        >
-          <motion.button
-            whileHover={{ scale: 1.05, y: -8 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => playSFX("success")}
-            className="bg-cyan-500 hover:bg-cyan-400 text-black font-black text-lg md:text-xl px-12 py-5 rounded-full uppercase tracking-widest transition-all shadow-[0_0_20px_rgba(0,191,255,0.3)]"
-          >
-            Start Winning Now
-          </motion.button>
-
-          <p className="mt-8 text-xs text-gray-500 font-sans uppercase tracking-[0.2em]">
-            * Limited to New Member only
-          </p>
-        </motion.div>
-      </div>
-    </motion.div>
-  </div>
-</section>
-
-           {/* Footer */}
-<footer className="bg-[#0B1120] border-t border-white/5 py-12 sm:py-20">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-    <div className="flex flex-col items-center text-center">
-
-     <img
-  src="/i882.png"
-  alt="i88 Logo"
-  className="mx-auto mb-6 w-20 sm:w-24 md:w-28 lg:w-32 opacity-95 brightness-110 
-  drop-shadow-[0_0_12px_rgba(56,189,248,0.45)]"
-/>
-
-      <p className="text-gray-400 text-base sm:text-lg leading-relaxed max-w-2xl">
-        i88 is the leading online gaming platform in Asia,
-        providing a secure and fair gaming experience for all players
-      </p>
-
-      <p className="text-gray-500 text-sm mt-10">
-        © 2026 i88 Gaming Group. All rights reserved
-      </p>
-
-    </div>
-
-  </div>
-</footer>
+            </footer>
           </motion.div>
         )}
       </AnimatePresence>
