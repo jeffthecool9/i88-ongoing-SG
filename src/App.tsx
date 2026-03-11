@@ -42,20 +42,23 @@ function ScrollReveal({
   );
 }
 
-// Sound Utility
-const playSFX = (type: "click" | "alert" | "success") => {
-  const sounds = {
-    click: "https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3",
-    alert: "https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3",
-    success: "https://assets.mixkit.co/active_storage/sfx/1435/1435-preview.mp3",
-  };
+const sectionTitle3DClass =
+  "text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight leading-[1.02] bg-gradient-to-b from-[#ffffff] via-[#fcfeff] to-[#d9ebff] bg-clip-text text-transparent drop-shadow-[0_2px_0_rgba(120,140,170,0.28)] [text-shadow:0_1px_0_rgba(255,255,255,0.18),0_8px_18px_rgba(0,0,0,0.18)]";
 
-  const audio = new Audio(sounds[type]);
-  audio.volume = 0.2;
-  audio.play().catch(() => {});
-};
+const sectionTitleCyan3DClass =
+  "text-lg sm:text-xl md:text-2xl font-black uppercase tracking-[0.25em] bg-gradient-to-b from-[#c7f8ff] via-[#65ebff] to-[#00ccff] bg-clip-text text-transparent drop-shadow-[0_2px_0_rgba(0,110,150,0.22)] [text-shadow:0_0_10px_rgba(0,191,255,0.18),0_8px_18px_rgba(0,0,0,0.16)]";
 
+const sectionSubtitleClass =
+  "mt-4 text-base sm:text-lg text-[#c8d5e6] font-medium [text-shadow:0_1px_0_rgba(255,255,255,0.03)]";
 
+const statNumberClass =
+  "text-2xl sm:text-3xl md:text-4xl font-black tracking-tighter bg-gradient-to-b from-[#ffffff] via-[#f3fbff] to-[#92e9ff] bg-clip-text text-transparent drop-shadow-[0_2px_0_rgba(70,120,150,0.22)] [text-shadow:0_1px_0_rgba(255,255,255,0.14),0_8px_18px_rgba(0,191,255,0.12)]";
+
+const cyanShineClass =
+  "bg-gradient-to-r from-[#c0f8ff] via-[#55e6ff] to-[#00c8ff] bg-clip-text text-transparent drop-shadow-[0_0_10px_rgba(0,191,255,0.22)]";
+
+const mediumTitleClass =
+  "text-xl sm:text-2xl md:text-3xl font-black uppercase tracking-tight bg-gradient-to-b from-[#ffffff] via-[#f8fbff] to-[#d8ebff] bg-clip-text text-transparent drop-shadow-[0_2px_0_rgba(110,135,165,0.24)] [text-shadow:0_1px_0_rgba(255,255,255,0.14),0_8px_18px_rgba(0,0,0,0.18)]";
 
 
 
