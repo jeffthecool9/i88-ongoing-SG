@@ -57,22 +57,19 @@ const playSFX = (type: "click" | "alert" | "success") => {
 
 // ===== 3D / Glossy Typography =====
 const sectionTitle3DClass =
-  "text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight leading-[1.02] bg-gradient-to-b from-[#ffffff] via-[#f4f8ff] to-[#b8c8de] bg-clip-text text-transparent drop-shadow-[0_2px_0_rgba(140,155,180,0.45)] [text-shadow:0_1px_0_rgba(255,255,255,0.14),0_10px_24px_rgba(0,0,0,0.28)]";
+  "text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight leading-[1.02] bg-gradient-to-b from-[#ffffff] via-[#fdfefe] to-[#e8f3ff] bg-clip-text text-transparent drop-shadow-[0_2px_0_rgba(180,210,235,0.22)] [text-shadow:0_1px_0_rgba(255,255,255,0.08),0_8px_18px_rgba(0,0,0,0.18)]";
 
 const sectionTitleCyan3DClass =
-  "text-lg sm:text-xl md:text-2xl font-black uppercase tracking-[0.25em] bg-gradient-to-b from-[#8af5ff] via-[#26deff] to-[#00bfff] bg-clip-text text-transparent drop-shadow-[0_2px_0_rgba(0,120,160,0.38)] [text-shadow:0_0_12px_rgba(0,191,255,0.26),0_10px_22px_rgba(0,0,0,0.22)]";
+  "text-lg sm:text-xl md:text-2xl font-black uppercase tracking-[0.25em] bg-gradient-to-b from-[#bafaff] via-[#53ebff] to-[#00cfff] bg-clip-text text-transparent drop-shadow-[0_1px_0_rgba(0,140,180,0.18)] [text-shadow:0_0_10px_rgba(0,191,255,0.18),0_8px_18px_rgba(0,0,0,0.16)]";
 
 const sectionSubtitleClass =
-  "mt-4 text-base sm:text-lg text-[#bfc9d8] font-medium [text-shadow:0_1px_0_rgba(255,255,255,0.04)]";
-
-const statNumberClass =
-  "text-2xl sm:text-3xl md:text-4xl font-black tracking-tighter bg-gradient-to-b from-white via-[#eefcff] to-[#9fd8ff] bg-clip-text text-transparent drop-shadow-[0_2px_0_rgba(80,130,160,0.35)] [text-shadow:0_1px_0_rgba(255,255,255,0.14),0_10px_20px_rgba(0,191,255,0.16)]";
+  "mt-4 text-base sm:text-lg text-[#c8d5e6] font-medium [text-shadow:0_1px_0_rgba(255,255,255,0.03)]";hadow-[0_2px_0_rgba(100,145,175,0.35)] [text-shadow:0_1px_0_rgba(255,255,255,0.12),0_8px_18px_rgba(0,0,0,0.22)]";
 
 const cyanShineClass =
-  "bg-gradient-to-r from-[#7ef6ff] via-[#26deff] to-[#00bfff] bg-clip-text text-transparent drop-shadow-[0_0_12px_rgba(0,191,255,0.32)]";
+  "bg-gradient-to-r from-[#aaf8ff] via-[#49e8ff] to-[#00cfff] bg-clip-text text-transparent drop-shadow-[0_0_8px_rgba(0,191,255,0.18)]";
 
-const mediumTitleClass =
-  "text-xl sm:text-2xl md:text-3xl font-black uppercase tracking-tight bg-gradient-to-b from-white via-[#f4fbff] to-[#b9dfff] bg-clip-text text-transparent drop-shadow-[0_2px_0_rgba(100,145,175,0.35)] [text-shadow:0_1px_0_rgba(255,255,255,0.12),0_8px_18px_rgba(0,0,0,0.22)]";
+const cyanShineClass =
+  "bg-gradient-to-r from-[#aaf8ff] via-[#49e8ff] to-[#00cfff] bg-clip-text text-transparent drop-shadow-[0_0_8px_rgba(0,191,255,0.18)]";
 
 const CyberBackground = () => {
   const { scrollY } = useScroll();
@@ -184,13 +181,13 @@ const AnimatedUnderline = ({ children }: { children: React.ReactNode }) => {
       className="relative inline-block"
     >
       {children}
-      <motion.span
-        className="absolute -bottom-1 left-0 h-[3px] bg-gradient-to-r from-[#33dfff] via-[#00bfff] to-[#33dfff] shadow-[0_0_12px_rgba(0,191,255,0.35)]"
-        initial={{ width: 0 }}
-        whileInView={{ width: "100%" }}
-        viewport={{ once: true }}
-        transition={{ duration: 1.5, ease: "easeOut", delay: 0.3 }}
-      />
+   <motion.span
+  className="absolute -bottom-1 left-0 h-[3px] bg-gradient-to-r from-[#5ee9ff] via-[#11cfff] to-[#5ee9ff] shadow-[0_0_10px_rgba(0,191,255,0.22)]"
+  initial={{ width: 0 }}
+  whileInView={{ width: "100%" }}
+  viewport={{ once: true }}
+  transition={{ duration: 1.5, ease: "easeOut", delay: 0.3 }}
+/>
     </motion.span>
   );
 };
