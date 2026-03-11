@@ -972,7 +972,7 @@ const pastEvents = [
       className="mt-16 text-center"
     >
       <p className="text-gray-500 text-xs font-sans uppercase tracking-[0.4em]">
-        New events launching every month. Stay tuned.
+        New events launching every month. Stay tuned
       </p>
     </motion.div>
   </motion.div>
@@ -1012,7 +1012,7 @@ const pastEvents = [
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
           className="mt-4 text-base sm:text-lg text-gray-300"
         >
-          Choose a tier. Rewards activate instantly after deposit.
+          Choose a tier. Rewards activate instantly after deposit
         </motion.p>
 
         <motion.div
@@ -1123,11 +1123,11 @@ const pastEvents = [
 
       <p className="text-gray-400 text-base sm:text-lg leading-relaxed max-w-2xl">
         i88 is the leading online gaming platform in Asia,
-        providing a secure and fair gaming experience for all players.
+        providing a secure and fair gaming experience for all players
       </p>
 
       <p className="text-gray-500 text-sm mt-10">
-        © 2026 i88 Gaming Group. All rights reserved.
+        © 2026 i88 Gaming Group. All rights reserved
       </p>
 
     </div>
