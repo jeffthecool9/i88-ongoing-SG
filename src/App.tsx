@@ -42,12 +42,17 @@ function ScrollReveal({
   );
 }
 
+const playSFX = (_type: "alert" | "click" | "success") => {
+  // Safe no-op fallback to prevent runtime crashes
+  // Replace later with your real sound logic if needed
+  return;
+};
+
 const sectionTitle3DClass =
-  "text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight leading-[1.02] bg-gradient-to-b from-[#ffffff] via-[#ffffff] to-[#c8f3ff] bg-clip-text text-transparent drop-shadow-[0_3px_0_rgba(160,190,220,0.45)] [text-shadow:0_0_12px_rgba(0,191,255,0.35),0_6px_18px_rgba(0,0,0,0.35)]";
+  "text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight leading-[1.02] bg-gradient-to-b from-[#ffffff] via-[#ffffff] to-[#e8fbff] bg-clip-text text-transparent drop-shadow-[0_3px_0_rgba(200,220,255,0.55)] [text-shadow:0_0_18px_rgba(120,230,255,0.55),0_0_34px_rgba(0,191,255,0.28),0_8px_22px_rgba(0,0,0,0.42)]";
 
 const sectionTitleCyan3DClass =
-  "text-lg sm:text-xl md:text-2xl font-black uppercase tracking-[0.25em] bg-gradient-to-b from-[#c7f8ff] via-[#65ebff] to-[#00ccff] bg-clip-text text-transparent drop-shadow-[0_2px_0_rgba(0,110,150,0.22)] [text-shadow:0_0_10px_rgba(0,191,255,0.18),0_8px_18px_rgba(0,0,0,0.16)]";
-
+  "text-lg sm:text-xl md:text-2xl font-black uppercase tracking-[0.25em] bg-gradient-to-b from-[#effcff] via-[#9cf4ff] to-[#28dcff] bg-clip-text text-transparent drop-shadow-[0_2px_0_rgba(120,180,210,0.28)] [text-shadow:0_0_16px_rgba(120,230,255,0.42),0_0_28px_rgba(0,191,255,0.22),0_8px_18px_rgba(0,0,0,0.2)]";
 const sectionSubtitleClass =
   "mt-4 text-base sm:text-lg text-[#c8d5e6] font-medium [text-shadow:0_1px_0_rgba(255,255,255,0.03)]";
 
@@ -275,7 +280,7 @@ const LiveTransactions = () => {
     const spins = getSpins(deposit);
 
     return {
-      id: Math.random().toString(36).substr(2, 9),
+      id: Math.random().toString(36).substr(2, 11),
       user: malaysianNames[Math.floor(Math.random() * malaysianNames.length)],
       deposit,
       spins,
@@ -288,14 +293,14 @@ const LiveTransactions = () => {
   useEffect(() => {
     const initial: any[] = [
       {
-        id: Math.random().toString(36).substr(2, 9),
+        id: Math.random().toString(36).substr(2, 11),
         user: malaysianNames[Math.floor(Math.random() * malaysianNames.length)],
         deposit: 30,
         spins: 0,
         time: "Just now",
       },
       {
-        id: Math.random().toString(36).substr(2, 9),
+        id: Math.random().toString(36).substr(2, 11),
         user: malaysianNames[Math.floor(Math.random() * malaysianNames.length)],
         deposit: 30,
         spins: 0,
@@ -355,19 +360,19 @@ const LiveTransactions = () => {
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-center mb-12"
-        >
-          <h2 className={sectionTitle3DClass}>
-            <AnimatedUnderline>Recent Joiners</AnimatedUnderline>
-          </h2>
-          <p className="mt-2 text-gray-400 text-sm font-sans">
-            Real-time deposits unlocking Free Tokens
-          </p>
-        </motion.div>
+  initial={{ opacity: 0, y: 15 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.8, ease: "easeOut" }}
+  className="text-center mb-12"
+>
+  <h2 className={`${sectionTitle3DClass} drop-shadow-[0_0_24px_rgba(120,230,255,0.38)]`}>
+    <AnimatedUnderline>Recent Joiners</AnimatedUnderline>
+  </h2>
+  <p className="mt-2 text-[#bcd3ea] text-sm font-sans">
+    Real-time deposits unlocking Free Tokens
+  </p>
+</motion.div>
 
         <div className="max-w-2xl mx-auto">
           <div className="flex items-center gap-2 mb-4 px-2">
@@ -783,20 +788,20 @@ export default function App() {
                 className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
               >
                 {/* Title */}
-                <motion.div
-                  initial={{ opacity: 0, y: 15 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 1, ease: "easeOut" }}
-                  className="text-center mb-16"
-                >
-                  <h2 className={sectionTitle3DClass}>
-                    <AnimatedUnderline>Past Big Events</AnimatedUnderline>
-                  </h2>
-                  <p className={sectionSubtitleClass}>
-                    Celebrating our past winners and events
-                  </p>
-                </motion.div>
+              <motion.div
+  initial={{ opacity: 0, y: 15 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 1, ease: "easeOut" }}
+  className="text-center mb-16"
+>
+  <h2 className={`${sectionTitle3DClass} drop-shadow-[0_0_28px_rgba(120,230,255,0.4)]`}>
+    <AnimatedUnderline>Past Big Events</AnimatedUnderline>
+  </h2>
+  <p className="mt-4 text-base sm:text-lg text-[#d3e3f5] font-medium [text-shadow:0_1px_0_rgba(255,255,255,0.05)]">
+    Celebrating our past winners and events
+  </p>
+</motion.div>
 
                 {/* Carousel Container */}
                 <div className="relative group/carousel">
