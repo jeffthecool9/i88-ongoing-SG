@@ -55,9 +55,7 @@ const playSFX = (type: "click" | "alert" | "success") => {
   audio.play().catch(() => {});
 };
 
-// ===== 3D / Glossy Typography =====
-const sectionTitle3DClass =
-  "text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight leading-[1.02] bg-gradient-to-b from-[#ffffff] via-[#fdfefe] to-[#e8f3ff] bg-clip-text text-transparent drop-shadow-[0_2px_0_rgba(180,210,235,0.22)] [text-shadow:0_1px_0_rgba(255,255,255,0.08),0_8px_18px_rgba(0,0,0,0.18)]";
+
 
 
 
