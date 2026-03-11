@@ -65,11 +65,6 @@ const sectionTitleCyan3DClass =
 const sectionSubtitleClass =
   "mt-4 text-base sm:text-lg text-[#c8d5e6] font-medium [text-shadow:0_1px_0_rgba(255,255,255,0.03)]";hadow-[0_2px_0_rgba(100,145,175,0.35)] [text-shadow:0_1px_0_rgba(255,255,255,0.12),0_8px_18px_rgba(0,0,0,0.22)]";
 
-const cyanShineClass =
-  "bg-gradient-to-r from-[#aaf8ff] via-[#49e8ff] to-[#00cfff] bg-clip-text text-transparent drop-shadow-[0_0_8px_rgba(0,191,255,0.18)]";
-
-const cyanShineClass =
-  "bg-gradient-to-r from-[#aaf8ff] via-[#49e8ff] to-[#00cfff] bg-clip-text text-transparent drop-shadow-[0_0_8px_rgba(0,191,255,0.18)]";
 
 const CyberBackground = () => {
   const { scrollY } = useScroll();
