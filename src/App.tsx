@@ -43,7 +43,7 @@ function ScrollReveal({
 }
 
 const sectionTitle3DClass =
-  "text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight leading-[1.02] bg-gradient-to-b from-[#ffffff] via-[#fcfeff] to-[#d9ebff] bg-clip-text text-transparent drop-shadow-[0_2px_0_rgba(120,140,170,0.28)] [text-shadow:0_1px_0_rgba(255,255,255,0.18),0_8px_18px_rgba(0,0,0,0.18)]";
+  "text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight leading-[1.02] bg-gradient-to-b from-[#ffffff] via-[#ffffff] to-[#c8f3ff] bg-clip-text text-transparent drop-shadow-[0_3px_0_rgba(160,190,220,0.45)] [text-shadow:0_0_12px_rgba(0,191,255,0.35),0_6px_18px_rgba(0,0,0,0.35)]";
 
 const sectionTitleCyan3DClass =
   "text-lg sm:text-xl md:text-2xl font-black uppercase tracking-[0.25em] bg-gradient-to-b from-[#c7f8ff] via-[#65ebff] to-[#00ccff] bg-clip-text text-transparent drop-shadow-[0_2px_0_rgba(0,110,150,0.22)] [text-shadow:0_0_10px_rgba(0,191,255,0.18),0_8px_18px_rgba(0,0,0,0.16)]";
