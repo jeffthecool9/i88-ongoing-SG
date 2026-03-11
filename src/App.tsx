@@ -49,6 +49,15 @@ const playSFX = (type: "click" | "alert" | "success") => {
     success: "https://assets.mixkit.co/active_storage/sfx/1435/1435-preview.mp3",
   };
 
+  const sectionTitle3DClass =
+  "text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight leading-[1.02] bg-gradient-to-b from-[#ffffff] via-[#f4f8ff] to-[#b8c8de] bg-clip-text text-transparent drop-shadow-[0_2px_0_rgba(140,155,180,0.45)] [text-shadow:0_1px_0_rgba(255,255,255,0.14),0_10px_24px_rgba(0,0,0,0.28)]";
+
+const sectionTitleCyan3DClass =
+  "text-lg sm:text-xl md:text-2xl font-black uppercase tracking-[0.25em] bg-gradient-to-b from-[#8af5ff] via-[#26deff] to-[#00bfff] bg-clip-text text-transparent drop-shadow-[0_2px_0_rgba(0,120,160,0.38)] [text-shadow:0_0_12px_rgba(0,191,255,0.26),0_10px_22px_rgba(0,0,0,0.22)]";
+
+const sectionSubtitleClass =
+  "mt-4 text-base sm:text-lg text-[#bfc9d8] font-medium [text-shadow:0_1px_0_rgba(255,255,255,0.04)]";
+  
   const audio = new Audio(sounds[type]);
   audio.volume = 0.2;
   audio.play().catch(() => {});
@@ -477,11 +486,11 @@ const PaymentRiver = () => {
   return (
     <section className="py-16 md:py-24 relative overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-8 md:mb-10">
-          <h3 className="text-lg sm:text-xl md:text-2xl font-black uppercase tracking-[0.25em] text-cyan-400 drop-shadow-[0_0_12px_rgba(34,211,238,0.35)]">
-            Supported Payment Methods
-          </h3>
-        </div>
+    <div className="text-center mb-8 md:mb-10">
+  <h3 className={sectionTitleCyan3DClass}>
+    Supported Payment Methods
+  </h3>
+</div>
 
         <div className="relative overflow-hidden">
           <motion.div
