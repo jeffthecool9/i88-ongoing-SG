@@ -49,10 +49,10 @@ const playSFX = (_type: "alert" | "click" | "success") => {
 };
 
 const sectionTitle3DClass =
-  "text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight leading-[1.02] bg-gradient-to-b from-[#ffffff] via-[#ffffff] to-[#e8fbff] bg-clip-text text-transparent drop-shadow-[0_3px_0_rgba(200,220,255,0.55)] [text-shadow:0_0_18px_rgba(120,230,255,0.55),0_0_34px_rgba(0,191,255,0.28),0_8px_22px_rgba(0,0,0,0.42)]";
+  "text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight leading-[1.02] bg-gradient-to-b from-[#ffffff] via-[#f8fcff] to-[#dff7ff] bg-clip-text text-transparent drop-shadow-[0_2px_0_rgba(190,215,235,0.45)] [text-shadow:0_0_6px_rgba(120,230,255,0.16),0_4px_14px_rgba(0,0,0,0.32)]";
 
 const sectionTitleCyan3DClass =
-  "text-lg sm:text-xl md:text-2xl font-black uppercase tracking-[0.25em] bg-gradient-to-b from-[#effcff] via-[#9cf4ff] to-[#28dcff] bg-clip-text text-transparent drop-shadow-[0_2px_0_rgba(120,180,210,0.28)] [text-shadow:0_0_16px_rgba(120,230,255,0.42),0_0_28px_rgba(0,191,255,0.22),0_8px_18px_rgba(0,0,0,0.2)]";
+  "text-lg sm:text-xl md:text-2xl font-black uppercase tracking-[0.25em] bg-gradient-to-b from-[#f3fdff] via-[#aef6ff] to-[#38ddff] bg-clip-text text-transparent drop-shadow-[0_1px_0_rgba(120,180,210,0.2)] [text-shadow:0_0_6px_rgba(120,230,255,0.14),0_4px_12px_rgba(0,0,0,0.18)]";;
 const sectionSubtitleClass =
   "mt-4 text-base sm:text-lg text-[#c8d5e6] font-medium [text-shadow:0_1px_0_rgba(255,255,255,0.03)]";
 
@@ -795,7 +795,7 @@ export default function App() {
   transition={{ duration: 1, ease: "easeOut" }}
   className="text-center mb-16"
 >
-  <h2 className={`${sectionTitle3DClass} drop-shadow-[0_0_28px_rgba(120,230,255,0.4)]`}>
+  <h2 className={`${sectionTitle3DClass}>
     <AnimatedUnderline>Past Big Events</AnimatedUnderline>
   </h2>
   <p className="mt-4 text-base sm:text-lg text-[#d3e3f5] font-medium [text-shadow:0_1px_0_rgba(255,255,255,0.05)]">
