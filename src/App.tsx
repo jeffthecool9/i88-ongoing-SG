@@ -977,7 +977,7 @@ const pastEvents = [
     </motion.div>
   </motion.div>
 </section>
-     {/* CTA */}
+    {/* CTA */}
 <section className="relative py-24 sm:py-32 px-4 overflow-hidden">
   <div className="absolute inset-0 bg-gradient-to-b from-[#0B1120] to-[#0f172a]" />
   <motion.div
@@ -1022,7 +1022,7 @@ const pastEvents = [
           transition={{ duration: 0.9, ease: "easeOut", delay: 0.3 }}
           className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-5 text-left"
         >
-          {/* RM50 */}
+          {/* $50 */}
           <motion.div
             whileHover={{ y: -6 }}
             transition={{ type: "spring", stiffness: 350, damping: 22 }}
@@ -1034,20 +1034,58 @@ const pastEvents = [
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold tracking-wide bg-white/10 text-gray-200 border border-white/10">
                   STARTER
                 </div>
-                <h3 className="mt-4 text-xl font-extrabold text-white">Deposit $50</h3>
-                <p className="mt-2 text-sm text-gray-300">
-                  Activate <span className="text-cyan-400 font-bold">88 FREE TOKENS</span>
+
+                <h3
+                  className="
+                    mt-5 text-[34px] md:text-[40px]
+                    font-black leading-[0.95] tracking-tight
+                    bg-gradient-to-b from-white via-[#f4f8ff] to-[#b9c7dc]
+                    bg-clip-text text-transparent
+                    drop-shadow-[0_2px_0_rgba(120,140,170,0.35)]
+                    [text-shadow:0_1px_0_rgba(255,255,255,0.12),0_10px_22px_rgba(0,0,0,0.28)]
+                  "
+                >
+                  Deposit
+                  <br />
+                  <span className="inline-block mt-1">$50</span>
+                </h3>
+
+                <p className="mt-3 text-[15px] md:text-[16px] font-semibold text-[#d3dceb] leading-snug">
+                  Activate{" "}
+                  <span
+                    className="
+                      font-black uppercase
+                      bg-gradient-to-r from-[#6ef0ff] via-[#1fd8ff] to-[#00bfff]
+                      bg-clip-text text-transparent
+                      drop-shadow-[0_0_10px_rgba(0,191,255,0.28)]
+                    "
+                  >
+                    88 FREE TOKENS
+                  </span>
                 </p>
               </div>
 
               <div className="text-right">
-                <div className="text-3xl font-black text-white leading-none">88</div>
-                <div className="text-xs text-gray-400 tracking-wider mt-1">TOKENS</div>
+                <div
+                  className="
+                    text-[54px] md:text-[62px]
+                    font-black leading-none tracking-tight
+                    bg-gradient-to-b from-white via-[#eef7ff] to-[#9fb9d9]
+                    bg-clip-text text-transparent
+                    drop-shadow-[0_2px_0_rgba(110,130,155,0.35)]
+                    [text-shadow:0_1px_0_rgba(255,255,255,0.14),0_12px_24px_rgba(0,0,0,0.28)]
+                  "
+                >
+                  88
+                </div>
+                <div className="text-[13px] font-bold text-[#8eb3d8] tracking-[0.18em] mt-1 uppercase">
+                  Tokens
+                </div>
               </div>
             </div>
           </motion.div>
 
-          {/* RM100 */}
+          {/* $100 */}
           <motion.div
             whileHover={{ y: -6 }}
             transition={{ type: "spring", stiffness: 350, damping: 22 }}
@@ -1063,20 +1101,56 @@ const pastEvents = [
                   MOST CHOSEN
                 </span>
               </div>
-            
             </div>
 
             <div className="flex items-start justify-between gap-4">
               <div>
-                <h3 className="text-xl font-extrabold text-white">Deposit $100</h3>
-                <p className="mt-2 text-sm text-gray-200">
-                  Activate <span className="text-cyan-400 font-black">188 FREE TOKENS</span>
+                <h3
+                  className="
+                    text-[34px] md:text-[40px]
+                    font-black leading-[0.95] tracking-tight
+                    bg-gradient-to-b from-white via-[#f4fbff] to-[#b9dfff]
+                    bg-clip-text text-transparent
+                    drop-shadow-[0_2px_0_rgba(100,145,175,0.35)]
+                    [text-shadow:0_1px_0_rgba(255,255,255,0.12),0_10px_22px_rgba(0,0,0,0.25)]
+                  "
+                >
+                  Deposit
+                  <br />
+                  <span className="inline-block mt-1">$100</span>
+                </h3>
+
+                <p className="mt-3 text-[15px] md:text-[16px] font-semibold text-[#d7e8f4] leading-snug">
+                  Activate{" "}
+                  <span
+                    className="
+                      font-black uppercase
+                      bg-gradient-to-r from-[#7ef6ff] via-[#26deff] to-[#00bfff]
+                      bg-clip-text text-transparent
+                      drop-shadow-[0_0_12px_rgba(0,191,255,0.32)]
+                    "
+                  >
+                    188 FREE TOKENS
+                  </span>
                 </p>
               </div>
 
               <div className="text-right">
-                <div className="text-3xl font-black text-white leading-none">188</div>
-                <div className="text-xs text-cyan-200/80 tracking-wider mt-1">TOKENS</div>
+                <div
+                  className="
+                    text-[54px] md:text-[62px]
+                    font-black leading-none tracking-tight
+                    bg-gradient-to-b from-white via-[#eefcff] to-[#9fd8ff]
+                    bg-clip-text text-transparent
+                    drop-shadow-[0_2px_0_rgba(80,130,160,0.35)]
+                    [text-shadow:0_1px_0_rgba(255,255,255,0.14),0_12px_24px_rgba(0,191,255,0.18)]
+                  "
+                >
+                  188
+                </div>
+                <div className="text-[13px] font-bold text-cyan-300/80 tracking-[0.18em] mt-1 uppercase">
+                  Tokens
+                </div>
               </div>
             </div>
           </motion.div>
