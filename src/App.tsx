@@ -59,11 +59,6 @@ const playSFX = (type: "click" | "alert" | "success") => {
 const sectionTitle3DClass =
   "text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight leading-[1.02] bg-gradient-to-b from-[#ffffff] via-[#fdfefe] to-[#e8f3ff] bg-clip-text text-transparent drop-shadow-[0_2px_0_rgba(180,210,235,0.22)] [text-shadow:0_1px_0_rgba(255,255,255,0.08),0_8px_18px_rgba(0,0,0,0.18)]";
 
-const sectionTitleCyan3DClass =
-  "text-lg sm:text-xl md:text-2xl font-black uppercase tracking-[0.25em] bg-gradient-to-b from-[#bafaff] via-[#53ebff] to-[#00cfff] bg-clip-text text-transparent drop-shadow-[0_1px_0_rgba(0,140,180,0.18)] [text-shadow:0_0_10px_rgba(0,191,255,0.18),0_8px_18px_rgba(0,0,0,0.16)]";
-
-const sectionSubtitleClass =
-  "mt-4 text-base sm:text-lg text-[#c8d5e6] font-medium [text-shadow:0_1px_0_rgba(255,255,255,0.03)]";hadow-[0_2px_0_rgba(100,145,175,0.35)] [text-shadow:0_1px_0_rgba(255,255,255,0.12),0_8px_18px_rgba(0,0,0,0.22)]";
 
 
 const CyberBackground = () => {
