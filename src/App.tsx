@@ -781,21 +781,21 @@ const pastEvents = [
     transition={{ duration: 1.2, ease: "easeOut" }}
     className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
   >
-    {/* Title */}
-    <motion.div
-      initial={{ opacity: 0, y: 15 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 1, ease: "easeOut" }}
-      className="text-center mb-16"
-    >
-      <h2 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tighter">
-        <AnimatedUnderline>Past  Big  Events</AnimatedUnderline>
-      </h2>
-      <p className="mt-4 text-gray-400 font-sans text-lg">
-        Celebrating our past winners and events
-      </p>
-    </motion.div>
+  {/* Title */}
+<motion.div
+  initial={{ opacity: 0, y: 15 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 1, ease: "easeOut" }}
+  className="text-center mb-16"
+>
+  <h2 className={sectionTitle3DClass}>
+    <AnimatedUnderline>Past Big Events</AnimatedUnderline>
+  </h2>
+  <p className={sectionSubtitleClass}>
+    Celebrating our past winners and events
+  </p>
+</motion.div>
 
     {/* Carousel Container */}
     <div className="relative group/carousel">
@@ -1005,24 +1005,26 @@ const pastEvents = [
     >
       <div className="max-w-3xl mx-auto text-center">
         <motion.h2
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
-          className="text-3xl sm:text-4xl md:text-5xl font-black text-white uppercase tracking-tight leading-[1.1]"
-        >
-          Unlock Your Welcome Reward
-        </motion.h2>
+  initial={{ opacity: 0, y: 10 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
+  className={sectionTitle3DClass}
+>
+  Unlock Your Welcome
+  <br />
+  Reward
+</motion.h2>
 
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-          className="mt-4 text-base sm:text-lg text-gray-300"
-        >
-          Choose a tier. Rewards activate instantly after deposit
-        </motion.p>
+<motion.p
+  initial={{ opacity: 0, y: 10 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+  className={sectionSubtitleClass}
+>
+  Choose a tier. Rewards activate instantly after deposit
+</motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 12 }}
