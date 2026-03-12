@@ -535,19 +535,19 @@ const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
   const [progress, setProgress] = useState(0);
   const [loadingText, setLoadingText] = useState("Initializing Bridge");
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          return 100;
-        }
-        return prev + 40;
-      });
-    }, 40);
+ useEffect(() => {
+  const interval = setInterval(() => {
+    setProgress((prev) => {
+      if (prev >= 100) {
+        clearInterval(interval);
+        return 100;
+      }
+      return prev + 40;
+    });
+  }, 40);
 
-    return () => clearInterval(interval);
-  }, []);
+  return () => clearInterval(interval);
+}, []);
 
   useEffect(() => {
     if (progress >= 100) onComplete();
