@@ -583,16 +583,19 @@ const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
     transition={{ duration: 1, ease: "easeOut" }}
     className="mb-12 relative"
   >
-    <div className="w-32 h-32 border-2 border-cyan-500/20 rounded-none flex items-center justify-center relative overflow-hidden group">
-      <motion.div
-        animate={{ rotate: 360 }}
-        transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-        className="absolute inset-0 border-t-2 border-cyan-500 rounded-none"
-      />
-      <span className="text-5xl font-black text-white tracking-tighter italic">
-        i88
-      </span>
-    </div>
+   <div className="w-32 h-32 sm:w-36 sm:h-36 border border-cyan-500/20 rounded-2xl flex items-center justify-center relative overflow-hidden bg-white/5 backdrop-blur-sm shadow-[0_0_30px_rgba(0,191,255,0.08)]">
+  <motion.div
+    animate={{ rotate: 360 }}
+    transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+    className="absolute inset-0 border-t-2 border-cyan-500/70 rounded-2xl"
+  />
+
+  <img
+    src="/i882.png"
+    alt="test Logo"
+    className="relative z-10 w-20 h-20 sm:w-24 sm:h-24 object-contain"
+  />
+</div>
 
     <motion.div
       animate={{ top: ["0%", "100%", "0%"] }}
