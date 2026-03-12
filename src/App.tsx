@@ -676,7 +676,7 @@ export default function App() {
       icon: "Coins",
       color: "from-red-600 to-amber-500",
       accent: "#ef4444",
-      image: "/cny.png",
+      image: "/cnysg.png",
       prizes: [
         "RM38,888 Free Credit Pool",
         "Limited Edition Gold Tokens",
