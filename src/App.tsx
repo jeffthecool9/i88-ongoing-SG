@@ -536,15 +536,20 @@ const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
   const [loadingText, setLoadingText] = useState("Initializing Bridge");
 
  useEffect(() => {
+  const duration = 3000; // total loading time (ms)
+  const stepTime = 30;   // update frequency
+  const increment = 100 / (duration / stepTime);
+
   const interval = setInterval(() => {
     setProgress((prev) => {
-      if (prev >= 100) {
+      const next = prev + increment;
+      if (next >= 100) {
         clearInterval(interval);
         return 100;
       }
-      return prev + 40;
+      return next;
     });
-  }, 40);
+  }, stepTime);
 
   return () => clearInterval(interval);
 }, []);
