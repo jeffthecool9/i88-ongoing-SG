@@ -576,30 +576,30 @@ const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
     >
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[120px] animate-pulse" />
 
-      <div className="relative z-10 flex flex-col items-center">
-        <motion.div
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          className="mb-12 relative"
-        >
-          <div className="w-32 h-32 border-2 border-cyan-500/20 rounded-none flex items-center justify-center relative overflow-hidden group">
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-              className="absolute inset-0 border-t-2 border-cyan-500 rounded-none"
-            />
-            <span className="text-5xl font-black text-white tracking-tighter italic">
-              i88
-            </span>
-          </div>
+    <div className="relative z-10 flex flex-col items-center">
+  <motion.div
+    initial={{ scale: 0.8, opacity: 0 }}
+    animate={{ scale: 1, opacity: 1 }}
+    transition={{ duration: 1, ease: "easeOut" }}
+    className="mb-12 relative"
+  >
+    <div className="w-32 h-32 border-2 border-cyan-500/20 rounded-none flex items-center justify-center relative overflow-hidden group">
+      <motion.div
+        animate={{ rotate: 360 }}
+        transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+        className="absolute inset-0 border-t-2 border-cyan-500 rounded-none"
+      />
+      <span className="text-5xl font-black text-white tracking-tighter italic">
+        i88
+      </span>
+    </div>
 
-          <motion.div
-            animate={{ top: ["0%", "100%", "0%"] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-            className="absolute left-0 right-0 h-[2px] bg-cyan-400 shadow-[0_0_15px_rgba(34,211,238,0.8)] z-20"
-          />
-        </motion.div>
+    <motion.div
+      animate={{ top: ["0%", "100%", "0%"] }}
+      transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+      className="absolute left-0 right-0 h-[2px] bg-cyan-400 shadow-[0_0_15px_rgba(34,211,238,0.8)] z-20"
+    />
+  </motion.div>
 
         <div className="flex gap-6 mb-8">
           {icons.map((item, idx) => (
